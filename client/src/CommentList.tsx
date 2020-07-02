@@ -1,21 +1,13 @@
-import React, { useState, useEffect } from 'react'
-import axios from 'axios'
+import React from 'react'
+import { Comment } from './PostList';
+
 
 interface Props {
-    postId: string
+    comments: Comment[]
 }
 
-interface Comment {
-    id: string
-    content: string
-}
 
-const CommentList = ({ postId }: Props) => {
-    const [comments, setComments] = useState<Comment[]>([]);
-
-    useEffect(() => {
-        axios.get(`http://localhost:4001/posts/${postId}/comments`).then(({ data }) => setComments(data))
-    }, [postId])
+const CommentList = ({ comments }: Props) => {
 
     return (
         <div>

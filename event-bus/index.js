@@ -14,6 +14,7 @@ const listeners = [
     'http://localhost:4000/events',
     'http://localhost:4001/events',
     'http://localhost:4002/events',
+    'http://localhost:4003/events',
 ]
 
 
