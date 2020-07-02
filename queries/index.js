@@ -3,6 +3,7 @@ const express = require('express');
 // const { v4: uuid } = require('uuid');
 const bodyParser = require('body-parser');
 const cors = require('cors');
+const axios = require('axios');
 
 
 const app = express();
@@ -18,7 +19,13 @@ app.get('/posts', (req, res) => {
 })
 
 app.post('/events', (req, res) => {
-    const { type, data } = req.body;
+    processEvent(req.body)
+
+    res.status(204).send();
+});
+
+function processEvent(event) {
+    const { type, data } = event;
 
     if (type === 'PostCreated') {
         const { id, title } = data;
@@ -43,12 +50,16 @@ app.post('/events', (req, res) => {
         comment.status = status;
         comment.content = content;
     }
-
-    console.log(posts)
-
-    res.status(204).send();
-})
-
-app.listen(4002, () => {
+}
+ 
+app.listen(4002, async () => {
     console.log('listening on port 4002')
+
+    const { data: events } = await axios.get('http://localhost:4005/events')
+
+    events.forEach((event) => {
+        console.log('Processing event: ', event.type)
+        processEvent(event)
+    })
+
 })

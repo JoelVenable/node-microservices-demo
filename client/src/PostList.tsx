@@ -14,6 +14,7 @@ interface Post {
 export interface Comment {
     id: string
     content: string
+    status: 'pending' | 'approved' | 'rejected'
 }
 
 type PostRecord = Record<string, Post>

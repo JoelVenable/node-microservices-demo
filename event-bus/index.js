@@ -10,6 +10,8 @@ const app = express();
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
+const events = [];
+
 const listeners = [
     'http://localhost:4000/events',
     'http://localhost:4001/events',
@@ -20,6 +22,7 @@ const listeners = [
 
 app.post('/events', async (req, res) => {
     const event = req.body;
+    events.push(event)
 
 
     await Promise.all(listeners.map(async (url) => {
@@ -28,6 +31,10 @@ app.post('/events', async (req, res) => {
     
     res.send({ status: 'OK' })
 });
+
+app.get('/events', (req, res) => {
+    res.send(events)
+})
 
 app.listen(4005, () => {
     console.log('listening on 4005')
