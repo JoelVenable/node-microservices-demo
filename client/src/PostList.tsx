@@ -23,7 +23,7 @@ const PostList = () => {
     const [posts, setPosts] = useState<PostRecord>({})
 
     useEffect(() => {
-        axios.get<PostRecord>('http://localhost:4002/posts').then(r => setPosts(r.data))
+        axios.get<PostRecord>('http://minikube.local/posts').then(r => setPosts(r.data))
     }, [])
 
     const renderedPosts = Object.values(posts).map((post) => (

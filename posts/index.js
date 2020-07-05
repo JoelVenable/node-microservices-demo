@@ -12,12 +12,8 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cors())
 const posts = {};
 
-app.get('/posts', (req, res) => {
-    res.send(posts)
-})
 
-
-app.post('/posts', async (req, res) => {
+app.post('/posts/create', async (req, res) => {
     const id = uuid();
     const { title } = req.body;
 
@@ -28,7 +24,7 @@ app.post('/posts', async (req, res) => {
 
     posts[id] = newPost
 
-    await axios.post('http://localhost:4005/events', {
+    await axios.post('http://event-bus-srv:3000/events', {
         type: 'PostCreated',
         data: newPost
     })
@@ -42,6 +38,6 @@ app.post('/events', (req, res) => {
 })
 
 
-app.listen(4000, () => {
-    console.log('listening on 4000')
+app.listen(3000, () => {
+    console.log('listening on 3000')
 })

@@ -13,10 +13,10 @@ app.use(bodyParser.urlencoded({ extended: false }));
 const events = [];
 
 const listeners = [
-    'http://localhost:4000/events',
-    'http://localhost:4001/events',
-    'http://localhost:4002/events',
-    'http://localhost:4003/events',
+    'http://posts-srv:3000/events',
+    'http://comments-srv:3000/events',
+    'http://moderation-srv:3000/events',
+    'http://queries-srv:3000/events',
 ]
 
 
@@ -36,6 +36,6 @@ app.get('/events', (req, res) => {
     res.send(events)
 })
 
-app.listen(4005, () => {
-    console.log('listening on 4005')
+app.listen(3000, () => {
+    console.log('listening on 3000')
 })

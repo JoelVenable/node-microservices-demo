@@ -10,7 +10,7 @@ const CommentCreate = ({ postId }: Props) => {
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
-        await axios.post(`http://localhost:4001/posts/${postId}/comments`, { content })
+        await axios.post(`http://minikube.local/posts/${postId}/comments`, { content })
         setContent('')
     }
 

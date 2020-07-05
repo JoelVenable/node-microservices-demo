@@ -52,14 +52,15 @@ function processEvent(event) {
     }
 }
  
-app.listen(4002, async () => {
-    console.log('listening on port 4002')
+app.listen(3000, async () => {
+    console.log('listening on port 3000')
 
-    const { data: events } = await axios.get('http://localhost:4005/events')
+    const { data: events } = await axios.get('http://event-bus-srv:3000/events')
 
     events.forEach((event) => {
         console.log('Processing event: ', event.type)
         processEvent(event)
     })
+    
 
 })

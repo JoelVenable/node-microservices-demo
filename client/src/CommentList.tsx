@@ -15,6 +15,7 @@ const CommentList = ({ comments }: Props) => {
         <div>
             {comments.map(({ status, content, id }) => {
                 let text
+
                 switch (status) {
                     case 'approved':
                         text = content;
@@ -32,6 +33,7 @@ const CommentList = ({ comments }: Props) => {
                 <li key={id}>{text}</li>
             )
             })}
+            
         </div>
     )
 }

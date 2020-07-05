@@ -4,7 +4,10 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon index.js"
+    "start": "nodemon index.js",
+    "build": "npm run docker-build && npm run docker-push",
+    "docker-build": "docker build -t joelmusicman/comments .",
+    "docker-push": "docker push joelmusicman/comments"
   },
   "keywords": [],
   "author": "",

@@ -1,0 +1,29 @@
+apiVersion: networking.k8s.io/v1beta1
+kind: Ingress
+metadata:
+  name: ingress-srv
+  annotations:
+    kubernetes.io/ingress.class: nginx
+    ingress.kubernetes.io/ssl-redirect: 'false'
+    nginx.ingress.kubernetes.io/use-regex: 'true'
+spec:
+  rules:
+    - host:  minikube.local
+      http:
+        paths:
+          - path: /posts/create
+            backend:
+              serviceName: posts-clusterip-srv
+              servicePort: 3000
+          - path: /posts
+            backend:
+              serviceName: queries-clusterip-srv
+              servicePort: 3000
+          - path: /posts/?(.*)
+            backend:
+              serviceName: comments-clusterip-srv
+              servicePort: 3000
+          - path: /?(.*)
+            backend:
+              serviceName: client-clusterip-srv
+              servicePort: 3000
