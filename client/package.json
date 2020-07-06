@@ -22,8 +22,8 @@
     "start": "react-scripts start",
     "build": "npm run react-build && npm run docker-build && npm run docker-push",
     "react-build": "react-scripts build",
-    "docker-build": "docker build -t joelmusicman/reactapp .",
-    "docker-push": "docker push joelmusicman/reactapp",
+    "docker-build": "docker build -t joelmusicman/client .",
+    "docker-push": "docker push joelmusicman/client",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },

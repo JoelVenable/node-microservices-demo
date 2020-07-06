@@ -11,7 +11,7 @@ build:
     - image: joelmusicman/client
       context: client
       docker:
-        dockerfile: Dockerfile.develop
+        dockerfile: Dockerfile
       sync:
         manual:
           - src: 'src/**/*.tsx'

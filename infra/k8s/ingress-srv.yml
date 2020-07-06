@@ -19,7 +19,7 @@ spec:
             backend:
               serviceName: queries-clusterip-srv
               servicePort: 3000
-          - path: /posts/?(.*)
+          - path: /posts/?(.*)/comments
             backend:
               serviceName: comments-clusterip-srv
               servicePort: 3000
@@ -27,3 +27,4 @@ spec:
             backend:
               serviceName: client-clusterip-srv
               servicePort: 3000
+
