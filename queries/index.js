@@ -21,6 +21,7 @@ app.get('/posts', (req, res) => {
 app.post('/events', (req, res) => {
     processEvent(req.body)
 
+
     res.status(204).send();
 });
 
@@ -51,7 +52,7 @@ function processEvent(event) {
         comment.content = content;
     }
 }
- 
+
 app.listen(3000, async () => {
     console.log('listening on port 3000')
 
@@ -61,6 +62,6 @@ app.listen(3000, async () => {
         console.log('Processing event: ', event.type)
         processEvent(event)
     })
-    
+
 
 })
